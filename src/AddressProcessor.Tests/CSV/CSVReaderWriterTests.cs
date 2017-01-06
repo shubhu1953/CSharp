@@ -28,7 +28,10 @@ namespace Csv.Tests
         public void ShouldOpenCSVReader()
         {
             _csvReaderWriter.Open(Filename, CSVReaderWriter.Mode.Read);
+
             _csvReader.Verify(x => x.Open(Filename));
+
+            _csvReaderWriter.Close();
         }
 
 
@@ -36,7 +39,10 @@ namespace Csv.Tests
         public void ShouldOpenCSVWriter()
         {
             _csvReaderWriter.Open(Filename, CSVReaderWriter.Mode.Write);
+
             _csvWriter.Verify(x => x.Open(Filename));
+
+            _csvReaderWriter.Close();
         }
 
         [Test]
@@ -46,6 +52,8 @@ namespace Csv.Tests
             
             var exception = Assert.Throws<Exception>(() => _csvReaderWriter.Open(Filename, unknownFileMode));
             Assert.That(exception.Message, Is.EqualTo("Unknown file mode for C:\\test\\testfile.txt"));
+
+            _csvReaderWriter.Close();
         }
 
         [Test]
@@ -68,6 +76,8 @@ namespace Csv.Tests
             
             _csvReader.Verify(x => x.Read(out column1, out column2));
             Assert.That(result, Is.True);
+
+            _csvReaderWriter.Close();
         }
 
         [Test]
@@ -78,6 +88,8 @@ namespace Csv.Tests
             _csvReaderWriter.Write(columns);
             
             _csvWriter.Verify(x => x.Write(columns));
+
+            _csvReaderWriter.Close();
         }
 
     }

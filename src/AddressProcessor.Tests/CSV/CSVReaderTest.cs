@@ -29,6 +29,8 @@ namespace AddressProcessing.Tests.CSV
             var stream = _csvReader.GetStream();
 
             Assert.That(stream, Is.EqualTo(streamreader));
+
+            _csvReader.Close();
         }
 
         [Test]
@@ -46,6 +48,8 @@ namespace AddressProcessing.Tests.CSV
             Assert.That(columns, Is.True);
             Assert.That(newcolumn1, Is.EqualTo("new1"));
             Assert.That(newcolumn2, Is.EqualTo("new2"));
+
+            _csvReader.Close();
         }
 
 
@@ -61,6 +65,8 @@ namespace AddressProcessing.Tests.CSV
             Assert.That(columns, Is.False);
             Assert.That(newcolumn1, Is.Null);
             Assert.That(newcolumn2, Is.Null);
+
+            _csvReader.Close();
         }
     }
 }

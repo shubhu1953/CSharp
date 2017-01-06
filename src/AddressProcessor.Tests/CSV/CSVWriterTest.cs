@@ -33,6 +33,7 @@ namespace AddressProcessing.Tests.CSV
             var stream = _csvWriter.GetWriter();
 
             Assert.That(stream, Is.EqualTo(streamreader));
+
             _csvWriter.Close();
         }
 
@@ -47,6 +48,8 @@ namespace AddressProcessing.Tests.CSV
             _csvWriter.Write(new String[] {"newColumn1", "newColumn2"});
 
             textWriter.Verify(x => x.WriteLine("newColumn1\tnewColumn2"));
+
+            _csvWriter.Close();
         }
 
         [Test]

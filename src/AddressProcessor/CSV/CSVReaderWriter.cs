@@ -52,7 +52,6 @@ namespace AddressProcessing.CSV
         {
             return _csvReader.Read(out column1, out column2);
         }
-        
 
         public void Close()
         {
